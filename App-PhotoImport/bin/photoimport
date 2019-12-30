@@ -1,4 +1,32 @@
-#!/usr/bin/perl -wT
+#!/usr/bin/perl -w
 
 use strict;
 use warnings;
+use Cwd;
+use File::Find;
+
+# Set up hash of valid filetypes
+my %filetypes = (
+	'jpg' => 'image',
+	'mov' => 'video',
+);
+
+# Open current dir
+my $cwd = cwd();
+
+# Find files in dir
+my @files;
+find(\&test_filetype, $cwd);
+
+# Collect files with supported filetypes
+sub test_filetype {
+	my $file = $File::Find::name;
+	foreach my $filetype (keys %filetypes) {
+		if ($file =~ m/\.$filetype$/i) {
+			push @files, $file
+		}
+	}
+}
+
+# Dump list for debugging
+print join "\n",@files;
