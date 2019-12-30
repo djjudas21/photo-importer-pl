@@ -4,10 +4,10 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 my %WriteMakefileArgs = (
-    NAME             => 'App::PhotoImporter',
+    NAME             => 'App::PhotoImport',
     AUTHOR           => q{Jonathan Gazeley <me@jonathangazeley.com>},
-    VERSION_FROM     => 'lib/App/PhotoImporter.pm',
-    ABSTRACT_FROM    => 'lib/App/PhotoImporter.pm',
+    VERSION_FROM     => 'lib/App/PhotoImport.pm',
+    ABSTRACT_FROM    => 'lib/App/PhotoImport.pm',
     LICENSE          => 'artistic_2',
     MIN_PERL_VERSION => '5.006',
     CONFIGURE_REQUIRES => {
@@ -21,7 +21,7 @@ my %WriteMakefileArgs = (
         #'Foo::Bar::Module' => '5.0401',
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean => { FILES => 'App-PhotoImporter-*' },
+    clean => { FILES => 'App-PhotoImport-*' },
 );
 
 # Compatibility with old versions of ExtUtils::MakeMaker

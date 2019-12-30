@@ -1,4 +1,4 @@
-App-PhotoImporter
+App-PhotoImport
 
 The README is used to introduce the module and provide instructions on
 how to install the module, any machine dependencies it may have (for
@@ -26,21 +26,21 @@ SUPPORT AND DOCUMENTATION
 After installing, you can find documentation for this module with the
 perldoc command.
 
-    perldoc App::PhotoImporter
+    perldoc App::PhotoImport
 
 You can also look for information at:
 
     RT, CPAN's request tracker (report bugs here)
-        https://rt.cpan.org/NoAuth/Bugs.html?Dist=App-PhotoImporter
+        https://rt.cpan.org/NoAuth/Bugs.html?Dist=App-PhotoImport
 
     AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/App-PhotoImporter
+        http://annocpan.org/dist/App-PhotoImport
 
     CPAN Ratings
-        https://cpanratings.perl.org/d/App-PhotoImporter
+        https://cpanratings.perl.org/d/App-PhotoImport
 
     Search CPAN
-        https://metacpan.org/release/App-PhotoImporter
+        https://metacpan.org/release/App-PhotoImport
 
 
 LICENSE AND COPYRIGHT
