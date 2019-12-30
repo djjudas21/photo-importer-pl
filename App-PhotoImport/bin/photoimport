@@ -7,10 +7,11 @@ use File::Find;
 use File::Basename;
 use Image::ExifTool;
 use File::Path qw(make_path);
+use File::Copy;
 
 # Flags
 my $verbose = 1;
-my $dryrun = 1;
+my $dryrun = 0;
 
 # Set up hash of valid filetypes
 my %filetypes = (
@@ -98,6 +99,10 @@ foreach my $file (@files) {
 		print "DRY RUN: not really moving $file  =>  $destfile\n";
 	} else {
 		print "$file  =>  $destfile\n";
+		move($file,  $destfile) or do {
+			print "Couldn't move file $file to $destfile\n";
+			next;
+		};
 	}
 }
 
