@@ -24,7 +24,7 @@ my $verbose = $args{'verbose'} // 1;
 my $dryrun = $args{'dry-run'} // 0;
 my $source = $args{'source'} // cwd();
 my $photopath = $args{'photo-path'} // '/home/jonathan/Pictures/Photos';
-my $videopath = $args{'videos-path'} // '/home/jonathan/Videos/Clips';
+my $videopath = $args{'video-path'} // '/home/jonathan/Videos/Clips';
 
 # Define dirs to move files
 my %paths = (
