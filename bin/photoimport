@@ -28,13 +28,13 @@ my $videopath = $args{'videos-path'} // '/home/jonathan/Videos/Clips';
 
 # Define dirs to move files
 my %paths = (
-	'image' => $photopath,
+	'photo' => $photopath,
 	'video' => $videopath,
 );
 
 # Set up hash of valid filetypes
 my %filetypes = (
-	'jpg' => 'image',
+	'jpg' => 'photo',
 	'mov' => 'video',
 );
 
