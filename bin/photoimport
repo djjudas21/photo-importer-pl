@@ -12,7 +12,7 @@ use Getopt::Long;
 
 my %args = ();
 GetOptions (\%args,
-	'verbose!',
+	'quiet|q!',
 	'dry-run!',
 	'source=s',
 	'photo-path|p=s',
@@ -20,7 +20,7 @@ GetOptions (\%args,
 );
 
 # Flags
-my $verbose = $args{'verbose'} // 1;
+my $quiet= $args{'quiet'} // 0;
 my $dryrun = $args{'dry-run'} // 0;
 my $source = $args{'source'} // cwd();
 my $photopath = $args{'photo-path'} // '/home/jonathan/Pictures/Photos';
@@ -37,6 +37,10 @@ my %filetypes = (
 	'jpg' => 'photo',
 	'mov' => 'video',
 );
+
+print "Looking for photos and videos in $source\n" unless $quiet;
+print "Moving photos to $photopath\n" unless $quiet;
+print "Moving videos to $videopath\n" unless $quiet;
 
 # Find files in dir
 my @files;
@@ -56,29 +60,29 @@ sub test_filetype {
 foreach my $file (@files) {
 	# Skip if not readable
 	if (!-r $file) {
-		print "Couldn't read file $file\n";
+		print "Couldn't read file $file\n" unless $quiet;
 		next;
 	}
 
 	# Find and parse EXIF date
 	my ($YYYY, $MM, $DD, $hh, $mm, $ss) = &parseDate($file) or do {
-		print "Couldn't parse date from EXIF data for $file\n";
+		print "Couldn't parse date from EXIF data for $file\n" unless $quiet;
 		next;
 	};
 
 	# Get file extension, always lower case
 	my($filename, $dirs) = fileparse($file) or do {
-		print "Couldn't parse filename $file\n";
+		print "Couldn't parse filename $file\n" unless $quiet;
 		next;
 	};
 	my $suffix = &getSuffix($filename) or do {
-		print "Couldn't parse file extension from $filename\n";
+		print "Couldn't parse file extension from $filename\n" unless $quiet;
 		next;
 	};
 
 	# Skip if unknown file type
 	if (!$filetypes{$suffix}) {
-		print "Unrecognised file type $suffix\n";
+		print "Unrecognised file type $suffix\n" unless $quiet;
 		next;
 	}
 
@@ -89,28 +93,28 @@ foreach my $file (@files) {
 	# Make sure destination exists and is writable
 	if (!-d $destpath) {
 		make_path $destpath or do {
-			print "Cannot create $destpath\n";
+			print "Cannot create $destpath\n" unless $quiet;
 			next;
 		};
 	}
 	if (!-w $destpath) {
-		print "Destination path $destpath not writable\n";
+		print "Destination path $destpath not writable\n" unless $quiet;
 		next;
 	}
 
 	# Make sure destination file doesn't already exist
 	if (-e $destfile) {
-		print "Destination file $destfile already exists, not overwriting\n";
+		print "Destination file $destfile already exists, not overwriting\n" unless $quiet;
 		next;
 	}
 
 	# Move the file
 	if ($dryrun) {
-		print "DRY RUN: not really moving $file  =>  $destfile\n";
+		print "DRY RUN: not really moving $file  =>  $destfile\n" unless $quiet;
 	} else {
-		print "$file  =>  $destfile\n";
+		print "$file  =>  $destfile\n" unless $quiet;
 		move($file,  $destfile) or do {
-			print "Couldn't move file $file to $destfile\n";
+			print "Couldn't move file $file to $destfile\n" unless $quiet;
 			next;
 		};
 	}

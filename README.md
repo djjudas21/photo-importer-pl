@@ -12,8 +12,8 @@ photo-importer [options]
 
 Where options may include:
 
-### `--(no-)verbose`
-Run in verbose mode. Default: true
+### `-q --(no-)quiet`
+Run in quiet mode
 ### `--(no-)dry-run`
 Run in dry run mode - don't move any files
 ### `--source`
