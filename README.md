@@ -22,3 +22,10 @@ Specify where to look for photos and videos. Defaults to current working directo
 Specify destination directory to move photos to. Defaults to `/home/jonathan/Pictures/Photos`
 ### `-v --video-path`
 Specify destination directory to move videos to. Defaults to `/home/jonathan/Videos/Clips`
+
+These options may be passed in on the command line or set in a config file `~/.photo-importer.conf`.
+If options are set in multiple places, the order of inheritance is:
+
+1. command line
+1. config file
+1. defaults

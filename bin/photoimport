@@ -9,6 +9,7 @@ use Image::ExifTool;
 use File::Path qw(make_path);
 use File::Copy;
 use Getopt::Long;
+use Config::IniHash;
 
 my %args = ();
 GetOptions (\%args,
@@ -19,12 +20,17 @@ GetOptions (\%args,
 	'video-path|v=s',
 );
 
+my $conf = ();
+if (-r "$ENV{HOME}/.photo-importer.conf") {
+	$conf = ReadINI("$ENV{HOME}/.photo-importer.conf");
+}
+
 # Flags
-my $quiet= $args{'quiet'} // 0;
-my $dryrun = $args{'dry-run'} // 0;
-my $source = $args{'source'} // cwd();
-my $photopath = $args{'photo-path'} // $ENV{'HOME'} . '/Pictures/Photos';
-my $videopath = $args{'video-path'} // $ENV{'HOME'} . '/Videos/Clips';
+my $quiet= $args{'quiet'} // $$conf{''}{'quiet'} // 0;
+my $dryrun = $args{'dry-run'} // $$conf{''}{'dry-run'} // 0;
+my $source = $args{'source'} // $$conf{''}{'source'} // cwd();
+my $photopath = $args{'photo-path'} // $$conf{''}{'photo-path'} // $ENV{'HOME'} . '/Pictures/Photos';
+my $videopath = $args{'video-path'} // $$conf{''}{'video-path'} // $ENV{'HOME'} . '/Videos/Clips';
 
 # Define dirs to move files
 my %paths = (
