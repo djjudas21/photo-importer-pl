@@ -19,9 +19,9 @@ Run in dry run mode - don't move any files
 ### `--source`
 Specify where to look for photos and videos. Defaults to current working directory.
 ### `-p --photo-path`
-Specify destination directory to move photos to. Defaults to `/home/jonathan/Pictures/Photos`
+Specify destination directory to move photos to. Defaults to `~/Pictures/Photos`
 ### `-v --video-path`
-Specify destination directory to move videos to. Defaults to `/home/jonathan/Videos/Clips`
+Specify destination directory to move videos to. Defaults to `~/Videos/Clips`
 
 These options may be passed in on the command line or set in a config file `~/.photo-importer.conf`.
 If options are set in multiple places, the order of inheritance is:
