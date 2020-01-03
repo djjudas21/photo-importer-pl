@@ -23,8 +23,8 @@ GetOptions (\%args,
 my $quiet= $args{'quiet'} // 0;
 my $dryrun = $args{'dry-run'} // 0;
 my $source = $args{'source'} // cwd();
-my $photopath = $args{'photo-path'} // '/home/jonathan/Pictures/Photos';
-my $videopath = $args{'video-path'} // '/home/jonathan/Videos/Clips';
+my $photopath = $args{'photo-path'} // $ENV{'HOME'} . '/Pictures/Photos';
+my $videopath = $args{'video-path'} // $ENV{'HOME'} . '/Videos/Clips';
 
 # Define dirs to move files
 my %paths = (
