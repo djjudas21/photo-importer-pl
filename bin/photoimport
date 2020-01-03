@@ -8,10 +8,29 @@ use File::Basename;
 use Image::ExifTool;
 use File::Path qw(make_path);
 use File::Copy;
+use Getopt::Long;
+
+my %args = ();
+GetOptions (\%args,
+	'verbose!',
+	'dry-run!',
+	'source=s',
+	'photo-path|p=s',
+	'video-path|v=s',
+);
 
 # Flags
-my $verbose = 1;
-my $dryrun = 0;
+my $verbose = $args{'verbose'} // 1;
+my $dryrun = $args{'dry-run'} // 0;
+my $source = $args{'source'} // cwd();
+my $photopath = $args{'photo-path'} // '/home/jonathan/Pictures/Photos';
+my $videopath = $args{'videos-path'} // '/home/jonathan/Videos/Clips';
+
+# Define dirs to move files
+my %paths = (
+	'image' => $photopath,
+	'video' => $videopath,
+);
 
 # Set up hash of valid filetypes
 my %filetypes = (
@@ -19,18 +38,9 @@ my %filetypes = (
 	'mov' => 'video',
 );
 
-# Define dirs to move files
-my %paths = (
-	'image' => '/home/jonathan/Pictures/Photos',
-	'video' => '/home/jonathan/Videos/Clips',
-);
-
-# Open current dir
-my $cwd = cwd();
-
 # Find files in dir
 my @files;
-find(\&test_filetype, $cwd);
+find(\&test_filetype, $source);
 
 # Collect files with supported filetypes
 sub test_filetype {
