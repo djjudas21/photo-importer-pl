@@ -41,6 +41,7 @@ my %paths = (
 # Set up hash of valid filetypes
 my %filetypes = (
 	'jpg' => 'photo',
+	'cr2' => 'photo',
 	'mov' => 'video',
 );
 
