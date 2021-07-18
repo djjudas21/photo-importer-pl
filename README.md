@@ -22,6 +22,8 @@ Specify where to look for photos and videos. Defaults to current working directo
 Specify destination directory to move photos to. Defaults to `~/Pictures/Photos`
 ### `-v --video-path`
 Specify destination directory to move videos to. Defaults to `~/Videos/Clips`
+### `-m --month`
+Group photos in directories by month, instead of by day
 
 These options may be passed in on the command line or set in a config file `~/.photo-importer.conf`.
 If options are set in multiple places, the order of inheritance is:
