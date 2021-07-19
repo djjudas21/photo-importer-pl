@@ -74,33 +74,36 @@ foreach my $file (@files) {
 	}
 
 	# Find and parse EXIF date
-	my ($YYYY, $MM, $DD) = &parseDate($file) or do {
+	my ($YYYY, $MM, $DD) = &parseDate($file);
+	if (!$YYYY || !$MM || !$DD) {
 		print "Couldn't parse date from EXIF data for $file\n" unless $quiet;
 		next;
-	};
+	}
 
 	# Get file extension, always lower case
-	my($filename, $dirs) = fileparse($file) or do {
+	my($filename, $dirs) = fileparse($file);
+	if (!$filename || !$dirs) {
 		print "Couldn't parse filename $file\n" unless $quiet;
 		next;
-	};
-	my $suffix = &getSuffix($filename) or do {
+	}
+	my $suffix = &getSuffix($filename);
+	if (!$suffix) {
 		print "Couldn't parse file extension from $filename\n" unless $quiet;
 		next;
-	};
+	}
 
 	# Skip if unknown file type
 	if (!$filetypes{$suffix}) {
-		print "Unrecognised file type $suffix\n" unless $quiet;
+		print "Unsupported file type $suffix\n" unless $quiet;
 		next;
 	}
 
 	# Build destination path
 	my $destpath;
 	if ($month) {
-		my $destpath = "$paths{$filetypes{$suffix}}/$YYYY/$YYYY-$MM";
+		$destpath = "$paths{$filetypes{$suffix}}/$YYYY/$YYYY-$MM";
 	} else {
-		my $destpath = "$paths{$filetypes{$suffix}}/$YYYY/$YYYY-$MM-$DD";
+		$destpath = "$paths{$filetypes{$suffix}}/$YYYY/$YYYY-$MM-$DD";
 	}
 	my $destfile = "$destpath/$filename";
 
@@ -144,7 +147,7 @@ sub parseDate {
 	if ($$exifdata{'CreateDate'} && $$exifdata{'CreateDate'} =~ m/^(\d{4}):(\d{2}):(\d{2}) (\d{2}):(\d{2}):(\d{2})$/) {
 		return ($1, $2, $3);
 	} else {
-		return;
+		return undef;
 	}
 }
 
