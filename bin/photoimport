@@ -44,6 +44,7 @@ my %paths = (
 my %filetypes = (
 	'jpg' => 'photo',
 	'cr2' => 'photo',
+	'heic' => 'photo',
 	'mov' => 'video',
 	'mp4' => 'video',
 );
