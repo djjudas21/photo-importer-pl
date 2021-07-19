@@ -109,6 +109,12 @@ foreach my $file (@files) {
 	}
 	my $destfile = "$destpath/$filename";
 
+	# Double check that the file isn't already in the right place
+	if ($file eq $destfile) {
+		print "File is already in the correct location\n" unless $quiet;
+		next;
+	}
+
 	# Make sure destination exists and is writable
 	if (!-d $destpath) {
 		make_path $destpath or do {
