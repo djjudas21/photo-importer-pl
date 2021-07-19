@@ -4,6 +4,9 @@ Script to import and archive photos &amp; videos
 This script looks for images and videos in the current directory, extracts the date from the EXIF
 data, and moves them into specified directories according to the date.
 
+By default, it sorts photos and videos by day, like `%YYYY/%YYYY-%MM-%DD/` but by passing the
+`--month` flag you can sort them by month, like `%YYYY/%YYYY-%MM/`.
+
 ## Usage
 
 ```
