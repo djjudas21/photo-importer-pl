@@ -18,7 +18,7 @@ GetOptions (\%args,
 	'source=s',
 	'photo-path|p=s',
 	'video-path|v=s',
-	'month|m!',
+	'month|m',
 );
 
 my $conf = ();
