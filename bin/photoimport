@@ -45,6 +45,7 @@ my %filetypes = (
 	'jpg' => 'photo',
 	'cr2' => 'photo',
 	'mov' => 'video',
+	'mp4' => 'video',
 );
 
 print "Looking for photos and videos in $source\n" unless $quiet;
